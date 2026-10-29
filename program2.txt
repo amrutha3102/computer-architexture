@@ -1,0 +1,40 @@
+def logical_left_shift(binary, positions):
+print("\nOriginal 8-bit number:", binary)
+result = binary
+
+for i in range(positions):
+    result = result[1:] + '0'
+    print("After left shift", i + 1, ":", result)
+
+return result
+
+def logical_right_shift(binary, positions):
+print("\nOriginal 8-bit number:", binary)
+result = binary
+
+for i in range(positions):
+    result = '0' + result[:-1]
+    print("After right shift", i + 1, ":", result)
+
+return result
+
+
+
+print("LOGICAL SHIFT OPERATIONS")
+
+
+number1 = "1111110110"
+number1 = number1[-8:]
+
+print("\na) Logical Left Shift by 2 positions")
+print("Input after keeping 8 bits:", number1)
+
+result1 = logical_left_shift(number1, 2)
+print("Final 8-bit result:", result1)
+
+
+number2 = "10010100"
+
+print("\nb) Logical Right Shift by 2 positions")
+result2 = logical_right_shift(number2, 2)
+print("Final 8-bit result:", result2)

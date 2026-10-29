@@ -1,0 +1,51 @@
+def to_8bit_binary(num):
+    return format(num & 0xFF, '08b')
+
+
+def signed_value(binary):
+    value = int(binary, 2)
+    if value >= 128:
+        value -= 256
+    return value
+
+
+def binary_addition(a, b):
+    # Display operands in 8-bit 2's complement
+    bin_a = to_8bit_binary(a)
+    bin_b = to_8bit_binary(b)
+
+    print("\nFirst Operand :", bin_a, "(", a, ")")
+    print("Second Operand:", bin_b, "(", b, ")")
+
+    # Perform 8-bit binary addition
+    result = (a + b) & 0xFF
+    bin_result = to_8bit_binary(result)
+    decimal_result = signed_value(bin_result)
+
+    print("\nBinary Addition:")
+    print("  ", bin_a)
+    print("+ ", bin_b)
+    print("----------")
+    print("  ", bin_result)
+
+    # Check signed overflow
+    overflow = ((a >= 0 and b >= 0 and decimal_result < 0) or
+                (a < 0 and b < 0 and decimal_result >= 0))
+
+    print("\nFinal Binary Result :", bin_result)
+    print("Final Decimal Result:", decimal_result)
+
+    if overflow:
+        print("Arithmetic Overflow: YES")
+    else:
+        print("Arithmetic Overflow: NO")
+
+
+# Main program
+print("SIGNED BINARY ARITHMETIC USING 8-BIT 2's COMPLEMENT")
+
+print("\na) (24 + (+17))")
+binary_addition(24, 17)
+
+print("\nb) ((-25) + (-18))")
+binary_addition(-25, -18)
